@@ -8,7 +8,10 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
     public static final String morningURI = "http://morning";
@@ -23,20 +26,24 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void init() {
+
         final Button synchBut = findViewById(R.id.synchButton);
+
         synchBut.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_SYNC);
-                Calendar cldr = Calendar.getInstance();
-                int hour = cldr.get(Calendar.HOUR_OF_DAY);
+                DateFormat timeFormat = new SimpleDateFormat("HH", Locale.getDefault());
+                String timeStr = timeFormat.format(Calendar.getInstance().getTime());
+                int hour = Integer.parseInt(timeStr);
 
-                if ((hour >= 6) & (hour <= 13)) {
+
+                if ((hour >= 6) & (hour < 13)) {
 
                     intent.setData(Uri.parse(morningURI));
 
-                } else if (hour == 14) {
+                } else if (hour <= 14) {
 
                     intent.setData(Uri.parse(dayURI));
                 } else {
