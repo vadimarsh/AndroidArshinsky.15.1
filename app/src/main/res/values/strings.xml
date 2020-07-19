@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">AndroidArshinsky.15.1</string>
+    <string name="synchtbut">Синхронизация</string>
+    <string name="morning">Утро</string>
+    <string name="day">День</string>
+    <string name="evening">Вечер</string>
+    <string name="start_sync_bt">Запуск синхронизации</string>
+</resources>
